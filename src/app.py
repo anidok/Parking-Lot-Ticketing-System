@@ -1,4 +1,4 @@
-#pylint: disable-msg=too-many-function-args
+# pylint: disable-msg=too-many-function-args
 from parking_lot_system.interactive_app import InteractiveApp
 
 if __name__ == "__main__":
@@ -25,9 +25,3 @@ if __name__ == "__main__":
             interactive_app.slot_numbers_for_cars_with_colour(input_command)
         elif input_command.startswith('slot_number_for_registration_number'):
             interactive_app.slot_number_for_registration_number(input_command)
-        
-
-
-
-            
-        

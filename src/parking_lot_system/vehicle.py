@@ -1,6 +1,7 @@
 from abc import ABC
 from .constants import VehicleType, Color
 
+
 class Vehicle(ABC):
     def __init__(self, registration_number: str, vehicle_type: VehicleType, color: Color, ticket=None):
         self.__registration_number = registration_number
@@ -17,7 +18,7 @@ class Vehicle(ABC):
     def get_registration_number(self):
         return self.__registration_number
 
+
 class Car(Vehicle):
     def __init__(self, registration_number: str, color: str, ticket=None):
         super().__init__(registration_number, VehicleType.CAR, Color[color], ticket)
-    

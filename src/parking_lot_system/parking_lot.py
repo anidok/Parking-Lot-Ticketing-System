@@ -3,6 +3,7 @@ from .parking_ticket import ParkingTicket
 from .constants import Color
 from .exception import ParkingFullException
 
+
 class ParkingLot:
     instance = None
 
@@ -54,7 +55,7 @@ class ParkingLot:
     def increment_slot_count(self):
         self.current_slot_count = self.current_slot_count + 1
 
-    def free_slot(self, slot_number: int):        
+    def free_slot(self, slot_number: int):
         if not self.is_slot_valid(slot_number):
             raise Exception("Sorry, The provided slot doesn't exist")
 
@@ -138,8 +139,6 @@ class ParkingLot:
         ticket = self.get_ticket_for_car_with_registration_number(registration_number)
 
         return None if ticket is None else ticket.get_slot_number()
-        
-
 
     def get_ticket_for_car_with_registration_number(self, registration_number: str) -> ParkingTicket:
         for _, ticket in self.active_tickets.items():

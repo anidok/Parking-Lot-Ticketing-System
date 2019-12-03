@@ -53,7 +53,7 @@ class InteractiveApp:
         for record in records:
             print(record)
 
-    def registration_numbers_for_cars_with_colour(self, input_command: str):      
+    def registration_numbers_for_cars_with_colour(self, input_command: str):
         try:
             input_command_splitted = input_command.split(' ')
             color = input_command_splitted[1]
@@ -74,12 +74,11 @@ class InteractiveApp:
             color = input_command_splitted[1]
 
             slot_numbers = self.parking_lot.get_slot_numbers_for_cars_with_colour(color)
-            
+
             if self.is_empty(slot_numbers):
                 print('Not Found')
             else:
                 print(slot_numbers)
-
 
         except Exception as exception:
             print('Some Error Occured: {}'.format(str(exception)))
@@ -96,7 +95,7 @@ class InteractiveApp:
                 print('Not Found')
             else:
                 print(slot_number)
-                
+
         except Exception as exception:
             print('Some Error Occured: {}'.format(str(exception)))
             traceback.print_exc()
