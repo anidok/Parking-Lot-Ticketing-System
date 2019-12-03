@@ -1,3 +1,4 @@
+from typing import Dict, Optional, List, Tuple
 from .vehicle import Vehicle
 from .parking_ticket import ParkingTicket
 from .constants import Color
@@ -12,7 +13,7 @@ class ParkingLot:
             self.max_slot_count = max_slot_count
 
             self.current_slot_count = 0
-            self.active_tickets = {}
+            self.active_tickets: Dict[str, ParkingTicket] = {}
             self.available_slots = [1 for i in range(max_slot_count)]
 
     def __init__(self, max_slot_count: int):
@@ -78,7 +79,7 @@ class ParkingLot:
     def is_slot_free(self, slot_number: int):
         return self.available_slots[slot_number - 1] == 1
 
-    def get_ticket_for_slot_number(self, slot_number: int) -> ParkingTicket:
+    def get_ticket_for_slot_number(self, slot_number: int) -> Optional[ParkingTicket]:
         for _, ticket in self.active_tickets.items():
             if isinstance(ticket, ParkingTicket):
                 if ticket.get_slot_number() == slot_number:
@@ -89,8 +90,8 @@ class ParkingLot:
     def decrement_slot_count(self):
         self.current_slot_count = self.current_slot_count - 1
 
-    def status(self) -> list():
-        output: list(tuple) = list()
+    def status(self) -> List[Tuple]:
+        output: List[Tuple] = []
 
         for _, ticket in self.active_tickets.items():
             if isinstance(ticket, ParkingTicket):
@@ -105,8 +106,8 @@ class ParkingLot:
 
         return output
 
-    def get_registration_numbers_for_cars_with_colour(self, color: str) -> list():
-        registration_numbers: list(str) = []
+    def get_registration_numbers_for_cars_with_colour(self, color: str) -> List[str]:
+        registration_numbers: List[str] = []
 
         tickets = self.get_tickets_for_cars_with_colour(color)
         for ticket in tickets:
@@ -114,8 +115,8 @@ class ParkingLot:
 
         return registration_numbers
 
-    def get_slot_numbers_for_cars_with_colour(self, color: str) -> list():
-        slot_numbers: list(int) = []
+    def get_slot_numbers_for_cars_with_colour(self, color: str) -> List[int]:
+        slot_numbers: List[int] = []
 
         tickets = self.get_tickets_for_cars_with_colour(color)
         for ticket in tickets:
@@ -123,8 +124,8 @@ class ParkingLot:
 
         return slot_numbers
 
-    def get_tickets_for_cars_with_colour(self, color: str) -> list():
-        tickets: list(ParkingTicket) = []
+    def get_tickets_for_cars_with_colour(self, color: str) -> List[ParkingTicket]:
+        tickets: List[ParkingTicket] = []
 
         for _, ticket in self.active_tickets.items():
             if isinstance(ticket, ParkingTicket):
@@ -135,12 +136,12 @@ class ParkingLot:
 
         return tickets
 
-    def get_slot_number_for_registration_number(self, registration_number: str) -> int:
+    def get_slot_number_for_registration_number(self, registration_number: str) -> Optional[int]:
         ticket = self.get_ticket_for_car_with_registration_number(registration_number)
 
         return None if ticket is None else ticket.get_slot_number()
 
-    def get_ticket_for_car_with_registration_number(self, registration_number: str) -> ParkingTicket:
+    def get_ticket_for_car_with_registration_number(self, registration_number: str) -> Optional[ParkingTicket]:
         for _, ticket in self.active_tickets.items():
             if isinstance(ticket, ParkingTicket):
                 current_registration_number = ticket.get_vehicle().get_registration_number()
