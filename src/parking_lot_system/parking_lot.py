@@ -5,10 +5,9 @@ from .constants import Color
 from .exception import ParkingFullException
 
 
-class ParkingLot:
-    instance = None
+class ParkingLot(object):   
 
-    class OnlyOne:
+    class __ParkingLot:
         def __init__(self, max_slot_count: int):
             self.max_slot_count = max_slot_count
 
@@ -16,11 +15,12 @@ class ParkingLot:
             self.active_tickets: Dict[str, ParkingTicket] = {}
             self.available_slots = [1 for i in range(max_slot_count)]
 
-    def __init__(self, max_slot_count: int):
+    instance = None
+
+    def __new__(cls, max_slot_count: int): # __new__ always a classmethod
         if not ParkingLot.instance:
-            ParkingLot.instance = ParkingLot.OnlyOne(max_slot_count)
-        else:
-            ParkingLot.instance.max_slot_count = max_slot_count
+            ParkingLot.instance = ParkingLot.__ParkingLot(max_slot_count)
+        return ParkingLot.instance
 
     def __getattr__(self, name):
         return getattr(self.instance, name)
