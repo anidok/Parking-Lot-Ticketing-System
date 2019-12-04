@@ -3,7 +3,7 @@ from parking_lot_system.interactive_app import InteractiveApp
 
 if __name__ == "__main__":
     print('Welcome to automated Parking Ticketing System !!')
-    print('Provide the commands. Press Enter to exit..')
+    print('Type the commands and press Enter to interact. To exit anytime, just Press Enter')
     input_command = ''
     interactive_app = InteractiveApp()
 
