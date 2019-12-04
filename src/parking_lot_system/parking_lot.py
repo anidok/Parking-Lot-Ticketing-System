@@ -17,7 +17,7 @@ class ParkingLot:
 
         def next_available_slot(self):
             if self.is_full():
-                raise ParkingFullException('Sorry, parking lot is full.')
+                return None
 
             try:
                 # Get the index of first available slot
@@ -25,10 +25,13 @@ class ParkingLot:
                 available_slot_number = available_slot_index + 1
                 return available_slot_number
             except ValueError:
-                raise ParkingFullException('Sorry, parking lot is full.')
+                return None
 
         def issue_parking_ticket(self, vehicle: Vehicle) -> ParkingTicket:
             available_slot_number = self.next_available_slot()
+
+            if available_slot_number is None:
+                raise ParkingFullException('Sorry, parking lot is full.')
 
             # Generate a new ticket
             ticket = ParkingTicket(available_slot_number, vehicle)

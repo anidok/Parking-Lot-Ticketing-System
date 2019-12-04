@@ -21,4 +21,4 @@ class Vehicle(ABC):
 
 class Car(Vehicle):
     def __init__(self, registration_number: str, color: str, ticket=None):
-        super().__init__(registration_number, VehicleType.CAR, Color[color], ticket)
+        super().__init__(registration_number, VehicleType.CAR, Color[color.upper()], ticket)
