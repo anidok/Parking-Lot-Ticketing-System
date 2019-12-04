@@ -8,6 +8,7 @@ class TestParkingLot(unittest.TestCase):
     def setUp(self):
         self.parking_lot: ParkingLot = ParkingLot(6)
 
+    # pylint: disable=too-many-statements
     def test_parking_lot_end_to_end(self):
         # issue some tickets successfully
         self.issue_ticket('KA-01-HH-1234', 'White')
@@ -34,7 +35,6 @@ class TestParkingLot(unittest.TestCase):
         expected = 4
         actual = self.parking_lot.next_available_slot()
         self.assertEqual(expected, actual)
-
 
         tickets = self.parking_lot.status()
         ticket = tickets[0]
@@ -93,6 +93,6 @@ class TestParkingLot(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def issue_ticket(self, reg_no: str, color: str) -> Car:
+    def issue_ticket(self, reg_no: str, color: str):
         car = Car(reg_no, color)
         self.parking_lot.issue_parking_ticket(car)
