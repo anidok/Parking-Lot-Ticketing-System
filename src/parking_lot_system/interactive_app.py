@@ -1,4 +1,4 @@
-# pylint: disable=broad-except
+# pylint: disable=broad-except, import-error
 import traceback
 from parking_lot_system.parking_lot import ParkingLot
 from parking_lot_system.vehicle import Car

@@ -1,4 +1,4 @@
-# pylint: disable-msg=too-many-function-args
+# pylint: disable-msg=too-many-function-args, import-error
 from parking_lot_system.interactive_app import InteractiveApp
 
 if __name__ == "__main__":

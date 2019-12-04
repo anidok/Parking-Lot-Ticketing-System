@@ -1,6 +1,7 @@
 import unittest
 from src.parking_lot_system.parking_lot import ParkingLot
 
+
 class TestParkingLot(unittest.TestCase):
     def setUp(self):
         pass
